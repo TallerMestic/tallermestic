@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+h1 {
+    color: #333;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.main-content {
+    display: flex;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 85px); /* 80px + 5px */
+    gap: 5px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.cell {
+    width: 83px; /* 78px + 5px */
+    height: 85px; /* 80px + 5px */
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    background-color: #fff;
+    font-size: 12px;
+}
+.highlight {
+    background-color: yellow;
+}
+.cell span {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    font-size: 10px;
+    color: gray;
+}
+input, button {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+button {
+    cursor: pointer;
+}
+.search-btn {
+    background-color: blue;
+    color: white;
+}
+.search-btn:hover {
+    background-color: darkblue;
+}
+.delete-btn {
+    background-color: red;
+    color: white;
+}
+.delete-btn:hover {
+    background-color: darkred;
+}
+.warehouse-container {
+    margin-left: 20px;
+}
+.warehouse-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+.warehouse-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+.delete-cross {
+    color: red;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.search-result-position {
+    position: absolute;
+    top: 154px;
+    left: 356px;
+    background-color: white;
+    border: 2px solid #333;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 24px;
+    font-weight: bold;
+    display: none;
+}

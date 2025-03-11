@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de Estantería</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Inventario de Estantería</h1>
+    <div class="container">
+        <!-- Mostrar la posición del objeto buscado -->
+        <span id="searchResultPosition" class="search-result-position"></span>
+
+        <!-- Campo de búsqueda con botón -->
+        <input type="text" id="search" placeholder="Buscar objeto..." list="objectList">
+        <datalist id="objectList"></datalist> 
+        <button class="search-btn" onclick="searchItem()">Buscar</button>
+        
+        <!-- Campo de texto y botón para eliminar por posición -->
+        <input type="text" id="deletePosition" placeholder="Ingrese posición (Ej: A1)">
+        <button class="delete-btn" onclick="deleteItemAtPosition()">Eliminar</button>
+        
+        <div class="main-content">
+            <div class="grid" id="shelf"></div>
+
+            <div class="warehouse-container">
+                <h2>Almacén</h2>
+                <input type="text" id="warehouseItem" placeholder="Nombre del objeto...">
+                <button class="search-btn" onclick="addWarehouseItem()">Añadir al almacén</button>
+                <div class="warehouse-list" id="warehouseList"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
