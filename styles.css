@@ -110,5 +110,5 @@ button {
     display: none;
 }
 #leftWarehouse {
-    margin-right: 20px;
+    margin-right: 20px; /* Same as the margin-left of .warehouse-container */
 }

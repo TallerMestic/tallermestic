@@ -95,23 +95,25 @@ function searchItem() {
     searchResultPosition.style.display = "none";
 
     if (selectedItem) {
-        let position = Object.keys(inventory).find(key => 
+        let positions = Object.keys(inventory).filter(key => 
             inventory[key].some(item => item.toLowerCase() === selectedItem)
         );
 
-        if (position) {
-            let targetCell = Array.from(shelf.children).find(cell => 
-                cell.querySelector("span").textContent === position
-            );
-            if (targetCell) {
-                targetCell.classList.add("highlight");
-                searchResultPosition.textContent = `Posición: ${position}`;
-                searchResultPosition.style.display = "block";
-            }
+        if (positions.length > 0) {
+            positions.forEach(position => {
+                let targetCell = Array.from(shelf.children).find(cell => 
+                    cell.querySelector("span").textContent === position
+                );
+                if (targetCell) {
+                    targetCell.classList.add("highlight");
+                }
+            });
+            searchResultPosition.textContent = `Posiciones: ${positions.join(", ")}`;
+            searchResultPosition.style.display = "block";
         } else if (warehouse.includes(selectedItem)) {
             alert("El objeto está en el almacén.");
         } else if (leftWarehouse.includes(selectedItem)) {
-            alert("El objeto está en el armario azul.");
+            alert("El objeto está en el almacén izquierdo.");
         } else {
             alert("Objeto no encontrado.");
         }
