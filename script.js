@@ -4,8 +4,11 @@ const objectList = document.getElementById("objectList");
 const deletePositionInput = document.getElementById("deletePosition");
 const warehouseItemInput = document.getElementById("warehouseItem");
 const warehouseList = document.getElementById("warehouseList");
+const leftWarehouseItemInput = document.getElementById("leftWarehouseItem");
+const leftWarehouseList = document.getElementById("leftWarehouseList");
 let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
 let warehouse = JSON.parse(localStorage.getItem("warehouse")) || [];
+let leftWarehouse = JSON.parse(localStorage.getItem("leftWarehouse")) || [];
 
 // Renderiza la estantería con las celdas y sus posiciones
 function renderShelf() {
@@ -107,6 +110,8 @@ function searchItem() {
             }
         } else if (warehouse.includes(selectedItem)) {
             alert("El objeto está en el almacén.");
+        } else if (leftWarehouse.includes(selectedItem)) {
+            alert("El objeto está en el armario azul.");
         } else {
             alert("Objeto no encontrado.");
         }
@@ -124,12 +129,32 @@ function addWarehouseItem() {
     }
 }
 
+// Añade un objeto al almacén izquierdo
+function addLeftWarehouseItem() {
+    let item = leftWarehouseItemInput.value.trim();
+    if (item && !leftWarehouse.includes(item)) {
+        leftWarehouse.push(item);
+        localStorage.setItem("leftWarehouse", JSON.stringify(leftWarehouse));
+        renderLeftWarehouseList();
+        leftWarehouseItemInput.value = "";
+    }
+}
+
 // Elimina un objeto del almacén
 function deleteWarehouseItem(item) {
     if (confirm(`¿Estás seguro de que deseas eliminar "${item}" del almacén?`)) {
         warehouse = warehouse.filter(warehouseItem => warehouseItem !== item);
         localStorage.setItem("warehouse", JSON.stringify(warehouse));
         renderWarehouseList();
+    }
+}
+
+// Elimina un objeto del almacén izquierdo
+function deleteLeftWarehouseItem(item) {
+    if (confirm(`¿Estás seguro de que deseas eliminar "${item}" del almacén izquierdo?`)) {
+        leftWarehouse = leftWarehouse.filter(leftWarehouseItem => leftWarehouseItem !== item);
+        localStorage.setItem("leftWarehouse", JSON.stringify(leftWarehouse));
+        renderLeftWarehouseList();
     }
 }
 
@@ -154,6 +179,28 @@ function renderWarehouseList() {
     });
 }
 
+// Renderiza la lista de objetos en el almacén izquierdo
+function renderLeftWarehouseList() {
+    leftWarehouseList.innerHTML = "";
+    leftWarehouse.forEach(item => {
+        let listItem = document.createElement("div");
+        listItem.className = "warehouse-item";
+        
+        let itemText = document.createElement("span");
+        itemText.textContent = item;
+
+        let deleteCross = document.createElement("span");
+        deleteCross.className = "delete-cross";
+        deleteCross.textContent = "✖";
+        deleteCross.onclick = () => deleteLeftWarehouseItem(item);
+
+        listItem.appendChild(itemText);
+        listItem.appendChild(deleteCross);
+        leftWarehouseList.appendChild(listItem);
+    });
+}
+
 // Renderiza la estantería y la lista del almacén al cargar la página
 renderShelf();
 renderWarehouseList();
+renderLeftWarehouseList();

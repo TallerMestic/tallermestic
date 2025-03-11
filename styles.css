@@ -109,3 +109,6 @@ button {
     font-weight: bold;
     display: none;
 }
+#leftWarehouse {
+    margin-right: 20px;
+}

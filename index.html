@@ -22,6 +22,13 @@
         <button class="delete-btn" onclick="deleteItemAtPosition()">Eliminar</button>
         
         <div class="main-content">
+            <div class="warehouse-container" id="leftWarehouse">
+                <h2>Armario azul</h2>
+                <input type="text" id="leftWarehouseItem" placeholder="Nombre del objeto...">
+                <button class="search-btn" onclick="addLeftWarehouseItem()">Añadir al armario</button>
+                <div class="warehouse-list" id="leftWarehouseList"></div>
+            </div>
+
             <div class="grid" id="shelf"></div>
 
             <div class="warehouse-container">
